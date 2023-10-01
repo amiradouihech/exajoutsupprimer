@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+   <head>
+    <titel>ex1 p1</titel>
+   </head> 
+   <body onload="showbooks()">
+    <div>
+        <h1>gestion des livre</h1>
+        <button id="btn">ajouter un livre</button>
+        <button id="del">supprimer</button>
+   <table id="tab1" border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>titre</th>
+        <th>auteur</th>
+        <th>prix</th>
+    </tr>
+</thead>
+    <tbody>
+
+    </tbody>
+</table>
+<div>
+    <form name="f">
+        <label for="id">id</label><input type="text" id="id" name="id" ><br>
+        <label for="titre">titre</label><input type="text" id="titre" name="titre" ><br>
+        <label for="auteur">auteur</label><input type="text" id="auteur" name="auteur" ><br>
+        <label for="prix">prix</label><input type="text" id="prix" name="prix" ><br>
+    </form>
+</div>
+</body>
+</html>
+<script>
+    let books=[{id:1,titre:"atonic habits",autaeur:"jams cler",prix:30},{id:2,titre:"power of habits",auteur:"jeff olen",prix:25}];
+    const showbooks=()=>{
+        const tbody=document.querySelector("#tab1 tbody");
+        let newhtml="";
+        books.forEach(book => {
+            newhtml+="<tr>";
+                newhtml+="<td>"+book.id+"</td>";
+                newhtml+="<td>"+book.titre+"</td>";
+                newhtml+="<td>"+book.autaeur+"</td>";
+                newhtml+="<td>"+book.prix+"</td>";
+                newhtml+="</tr>";
+                
+        });
+        tbody.innerHTML=newhtml;
+    }
+    btn=document.getElementById("btn");
+    btn.addEventListener("click",ajout);
+    function ajout(){
+        const newbook={
+            id:books[books.length-1].id +1,
+            titre:document.getElementById("titre").value,
+            autaeur:document.getElementById("auteur").value,
+            prix:document.getElementById("prix").value,
+        }
+        books.push(newbook);
+        showbooks();
+    }
+    window.addEventListener("load",showbooks);
+    btn1=document.getElementById("del");
+    btn1.addEventListener("click",supprimer);
+    function supprimer(){
+        const newbook={
+            id:document.getElementById("id").value, 
+            titre:document.getElementById("titre").value,
+            autaeur:document.getElementById("auteur").value,
+            prix:document.getElementById("prix").value,
+        }
+        books.pop(newbook);
+        showbooks();
+
+    }
+
+
+
+</script>
